@@ -25,8 +25,8 @@
         <thead>
         <tr>
             <td>ID</td>
-            <td>Title</td>
-            <td>Price</td>
+            <td>Название</td>
+            <td>Цена</td>
             <td></td>
         </tr>
         </thead>
@@ -36,25 +36,51 @@
             <td>{{p.title}}</td>
             <td>{{p.price}}</td>
             <td>
-                <button class="btn btn-danger" ng-click="deleteProduct(p.id)">Delete</button>
+                <button class="btn btn-danger" ng-click="deleteProduct(p.id)">Удалить</button>
+                <button class="btn btn-primary" ng-click="addProductToCart(p.id)">Добавить</button>
             </td>
         </tr>
         </tbody>
     </table>
     <p></p>
-    <h3>Add Product</h3>
+    <h3>Добавить продукт</h3>
     <p></p>
     <form class="row g-3" ng-submit="createNewProduct()">
         <div class="col-auto">
-            <input type="text" class="form-control" id="newProductTitle" ng-model="newProduct.title" placeholder="Title">
+            <input type="text" class="form-control" id="newProductTitle" ng-model="newProduct.title" placeholder="Название">
         </div>
         <div class="col-auto">
-            <input type="number" class="form-control" id="newProductPrice" ng-model="newProduct.price" placeholder="Price">
+            <input type="number" class="form-control" id="newProductPrice" ng-model="newProduct.price" placeholder="Цена">
         </div>
         <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-3">Create</button>
+            <button type="submit" class="btn btn-primary mb-3">Создать</button>
         </div>
     </form>
+
+    <p></p>
+    <h3>Список товаров в корзине</h3>
+    <p></p>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Название</td>
+            <td>Цена</td>
+            <td></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="p in cart">
+            <td>{{p.id}}</td>
+            <td>{{p.title}}</td>
+            <td>{{p.price}}</td>
+            <td>
+                <button class="btn btn-danger" ng-click="deleteProduct(p.id)">Удалить</button>
+                <button class="btn btn-primary" ng-click="addProductToCart(p.id)">Добавить</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>
