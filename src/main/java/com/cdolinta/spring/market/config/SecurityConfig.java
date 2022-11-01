@@ -14,7 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity/*(debug = true)*/
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
 @Slf4j
@@ -27,9 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/v1/orders/**").authenticated()
-                .antMatchers("/api/v1/profile").authenticated()
-                .antMatchers("/secured").authenticated()
+                .antMatchers("/api/v1/orders/**", "/api/v1/profile", "/secured").authenticated()
+                .antMatchers("/api/v1/products/**").permitAll()
                 .antMatchers("/h2/**").permitAll()
                 .anyRequest().permitAll()
                 .and()

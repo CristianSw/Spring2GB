@@ -1,29 +1,26 @@
 package com.cdolinta.spring.market.controllers;
 
+import com.cdolinta.spring.market.dto.Cart;
 import com.cdolinta.spring.market.entities.Product;
 import com.cdolinta.spring.market.services.CartService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
-@RequestMapping("/cart")
+@RequestMapping("/api/v1/cart")
 public class CartController {
     private final CartService cartService;
 
-    @GetMapping
-    public List<Product> findAllProducts(){
-        return cartService.findAll();
+    @GetMapping("/add/{id}")
+    public void addToCart(@PathVariable Long id){
+        cartService.add(id);
     }
 
-    @PostMapping("/{id}")
-    public void addProductToCart(@PathVariable long id){
-        cartService.addProduct(id);
+    @GetMapping
+    public Cart getCurrentCart(){
+       return cartService.getCurrentCart();
     }
 }
